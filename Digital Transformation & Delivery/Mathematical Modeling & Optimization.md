@@ -62,16 +62,22 @@ Building on PDE outputs, we formulate an **optimization problem** to minimize en
 #### 3.2.1 Mathematical Formulation
 
 1. **Objective Function**  
-  
-   $\[
-     \text Minimize} \quad \int_0^T (V(t) \cdot I(t))\, dt
-   \  \$
-   <br> where \(V(t)\) is the applied voltage, \(I(t)\) is current. Alternatively, a **multi-objective** approach can be used:
+Minimize:
 
-   $\
-     \min \{ E, \; GHG, \; \text{AnodeEffects} \}
-   \$
-   <br> solved via **Pareto front** methods or weighted sums.
+$$
+\text{Minimize} \quad \int_0^T (V(t) \cdot I(t)) \, dt
+$$
+
+where $V(t)$ is the applied voltage, and $I(t)$ is the current.
+
+Alternatively, a **multi-objective** approach can be used:
+
+$$
+\min \Big\{ E, \; GHG, \; \text{AnodeEffects} \Big\}
+$$
+
+solved via **Pareto front** methods or weighted sums.
+
 
 2. **Key Constraints**  
    - **Thermal**: $\(T_{\text{min}} \le T(x,y,z,t) \le T_{\text{max}}\)$ to avoid damage to cell lining.  
