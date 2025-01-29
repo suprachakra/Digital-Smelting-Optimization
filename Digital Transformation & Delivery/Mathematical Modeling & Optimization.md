@@ -73,7 +73,7 @@ where $V(t)$ is the applied voltage, and $I(t)$ is the current.
 Alternatively, a **multi-objective** approach can be used:
 
 $$
-\min \{ E, GHG, \text{AnodeEffects} \}
+\min {\{ E, GHG, \text{AnodeEffects} \}}
 $$
 
 solved via **Pareto front** methods or weighted sums.
