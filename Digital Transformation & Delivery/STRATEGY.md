@@ -94,21 +94,21 @@ A simplified **Use Case Diagram** for the “Data Ingestion & Optimization” fl
 
 ```
                                              +--------------------------+
-                                             |        Plant Manager    |
+                                             |      Plant Manager       |
                                              +-----------+--------------+
                                                          |
                                                          | (Views real-time dashboards, sets thresholds)
                                                          v
                                     +----------------------------------------+
-                                    |        Operational Dashboards (UC-04)  |
+                                    |     Operational Dashboards (UC-04)     |
                                     +------------------+---------------------+
                                                        |
                                                        | (Requests PDE results, optimization outputs)
                                                        v
-+-------------------------+                +-------------------------------+     +---------------------+
-|  Data Ingestion (UC-01)|  -------------> |   PDE Models (UC-02)         | --> |  Optimization Engine|
-|   (Collect & ETL data) |  (Clean, Store)| (Fourier, Fick, B–Volmer)    |     |   (UC-03)           |
-+-------------------------+                +-------------+-----------------+     +---------------------+
++-------------------------+                 +-------------------------------+     +---------------------+
+|  Data Ingestion (UC-01) |  -------------> |      PDE Models (UC-02)       | --> | Optimization Engine |
+|  (Collect & ETL data)   |  (Clean, Store) |   (Fourier, Fick, B–Volmer)   |     |   (UC-03)           |
++-------------------------+                 +-------------+-----------------+     +---------------------+
                                                        |                                |
                                                        | (Model results)                | (Optimized setpoints)
                                                        |                                |
@@ -117,7 +117,7 @@ A simplified **Use Case Diagram** for the “Data Ingestion & Optimization” fl
                                                                        | (Integrate recommended params)
                                                                        v
                                                         +----------------------------------+
-                                                        |  SCADA Integration (UC-05)       |
+                                                        |     SCADA Integration (UC-05)    |
                                                         |  (Real-time control adjustments) |
                                                         +----------------------------------+
                                                                        |
