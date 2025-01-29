@@ -14,6 +14,14 @@ By leveraging PDE-based modeling, big data, and advanced optimization, we aim to
 - **Agile & SAFe**: Iterative release of new features per Program Increment
 - **Community of Practice**: Regular knowledge-sharing & mentorship
 
+### This repository implements an **Industry 4.0** solution for MetalX smelting, combining:
+- **Data ingestion & ETL** (Phase 1)
+- **PDE modeling** (Phase 2, 3)
+- **Optimization** (Phase 4)
+- **Dashboards** (Phase 5)
+- **SCADA Integration** (Phase 6)
+- **Testing & Refinement** (Phase 7)
+
 ### Repository Structure
 - **data/**: Raw & cleaned datasets
 - **models/**: Python scripts for PDE solutions
@@ -21,6 +29,7 @@ By leveraging PDE-based modeling, big data, and advanced optimization, we aim to
 - **notebooks/**: Jupyter notebooks with detailed walkthroughs
 - **reports/**: In-depth documentation and technical references
 - **tests/**: Automated tests ensuring correctness & stability
+- **hpc_scripts**: Scale PDE computations (thermal, mass transfer, combined) to handle large meshes or multiple smelting cells simultaneously
 
 ### Getting Started
 1. **Clone the Repo**: `git clone https://github.com/username/metalx-smelting-optimization.git`
