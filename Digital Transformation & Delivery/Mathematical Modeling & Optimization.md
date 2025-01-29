@@ -67,8 +67,8 @@ Building on PDE outputs, we formulate an **optimization problem** to minimize en
   > \]$
   > <br>where \(V(t)\) is the applied voltage, \(I(t)\) is current. Alternatively, a **multi-objective** approach can be used:
 <br>
-<br>
- >  $\[
+
+   $\[
  >    \min \{ E, GHG, \text{AnodeEffects} \}
  >  \]$
  >  <br>solved via **Pareto front** methods or weighted sums.
