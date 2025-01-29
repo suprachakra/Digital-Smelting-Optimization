@@ -70,7 +70,7 @@ Building on PDE outputs, we formulate an **optimization problem** to minimize en
 
    $\[
      \min \Big\{ E, \; GHG, \; \text{AnodeEffects} \Big\}
-   \]\$
+   \]$
    <br> solved via **Pareto front** methods or weighted sums.
 
 2. **Key Constraints**  
