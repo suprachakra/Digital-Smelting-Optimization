@@ -144,21 +144,21 @@ A simplified **Use Case Diagram** for the “Data Ingestion & Optimization” fl
 Below is a high-level **Component Diagram** illustrating how different systems integrate:
 
 ```
-+----------------------------------------------------------------------------------------------------+
-|                                      Azure Cloud                                     |
-| --------------------------------------------------------------------------------------------------- |
-|  +---------------------------------+               +---------------------------------------------+  |
-|  |  Data Ingestion Service         |               |  PDE Modeling Service (UC-02)              |  |
-|  |  (UC-01)                        |               |  - Fourier, Fick, B–Volmer Models          |  |
-|  |  - Sensor / SCADA Connectors    |  ---- ETL --->|  - HPC/Grid Compute                        |  |
-|  |  - Cleansing / Validation       |               +----------+----------------------------------+  |
-|  +---------------------------------+                          |                                     |
-|             |                                                      | (Model outputs, results)        |
-|             | (Transformed data)                                   v                                     |
++---------------------------------------------------------------------------------------------------------+
+|                                      Azure Cloud                                                        |
+| --------------------------------------------------------------------------------------------------------|
+|  +---------------------------------+               +---------------------------------------------+      |
+|  |  Data Ingestion Service         |               |  PDE Modeling Service (UC-02)              |       |
+|  |  (UC-01)                        |               |  - Fourier, Fick, B–Volmer Models          |       |
+|  |  - Sensor / SCADA Connectors    | ---- ETL ---> |  - HPC/Grid Compute                        |       |
+|  |  - Cleansing / Validation       |               +----------+----------------------------------+      |
+|  +---------------------------------+                                |                                   |
+|             |                                                       | (Model outputs, results)          |
+|             | (Transformed data)                                    v                                   |
 |  +----------------------------------+           +-------------------------------------------------+     |
-|  |    Data Lake / Lakehouse        |<----------|   Optimization Engine (UC-03)                   |     |
-|  |    - Bronze, Silver, Gold zones |           |   - Pyomo/CVXPY, NLP, Genetic Algorithms        |     |
-|  |    - Historical & real-time     |           |   - RESTful API                                 |     |
+|  |    Data Lake / Lakehouse         |<----------|   Optimization Engine (UC-03)                   |     |
+|  |    - Bronze, Silver, Gold zones  |           |   - Pyomo/CVXPY, NLP, Genetic Algorithms        |     |
+|  |    - Historical & real-time      |           |   - RESTful API                                 |     |
 |  +----------------------------------+           +-------------------------------------------------+     |
 |                                                                              | (Optimized setpoints)    |
 |                                                                              v                          |
@@ -169,17 +169,17 @@ Below is a high-level **Component Diagram** illustrating how different systems i
 |                                                                     +---------------+---------------+   |
 |                                                                                     | (Data backflow)   |
 |                                                                                     v                   |
-|  +---------------------------------+           +--------------------------------+                      |
-|  |  Digital Twin & ML (UC-06)      |<----------|  Real-Time Events (Streaming) |                      |
-|  |  - Anomaly detection (LSTM, RNN)|           +--------------------------------+                      |
-|  |  - Virtual environment          |                                                         ^         |
-|  +---------------------------------+                                                         | (Alerts)|
-|                                                                                              |         |
-|                                           +--------------------------------------------------+---------+
-|                                           |        Operational Dashboards (UC-04)                      |
-|                                           |        - Visual Analytics, KPIs, Alerts                    |
-|                                           +------------------------------------------------------------+
-+--------------------------------------------------------------------------------------------------------+
+|  +---------------------------------+                                +--------------------------------+  |
+|  |  Digital Twin & ML (UC-06)      |<-------------------------------|  Real-Time Events (Streaming)  |  |
+|  |  - Anomaly detection (LSTM, RNN)|                                +--------------------------------+  |
+|  |  - Virtual environment          |                                                         ^          |
+|  +---------------------------------+                                                (Alerts) |          |
+|                                                                                              |          |
+|                                                                  +---------------------------+----------+
+|                                                                  |    Operational Dashboards (UC-04)    |
+|                                                                  |    - Visual Analytics, KPIs, Alerts  |
+|                                                                  +--------------------------------------+
++---------------------------------------------------------------------------------------------------------+
 ```
 
 #### Component Responsibilities
