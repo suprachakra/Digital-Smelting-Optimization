@@ -1,136 +1,33 @@
-# ==============================
-# OS-specific files
-# ==============================
-.DS_Store
-Thumbs.db
-
-# ==============================
-# Python-related files
-# ==============================
+# Python bytecode
+__pycache__/
 *.pyc
 *.pyo
-*.pyd
-__pycache__/
-*.egg-info/
-*.eggs/
-*.env
-*.venv
-.venv/
-env/
-venv/
-pip-log.txt
-pip-delete-this-directory.txt
-poetry.lock
-Pipfile
-Pipfile.lock
 
-# ==============================
-# Jupyter Notebook files
-# ==============================
+# Jupyter checkpoints
 .ipynb_checkpoints/
-.notebooks/
-.notebook/
-*.ipynb_checkpoints
 
-# ==============================
-# Virtual Environments
-# ==============================
-/.env
-/.venv
-/venv
-/env
-/bin
-/include
-/lib
-/lib64
-/share
+# Virtual environments
+venv/
+.env/
 
-# ==============================
-# Logs and database files
-# ==============================
+# Data logs or large files
 *.log
-*.sqlite
-*.sqlite3
-*.db
-*.db-journal
-*.hdf5
-*.h5
-*.json
-
-# ==============================
-# Large files and datasets
-# ==============================
 data/raw/
 data/processed/
-data/interim/
-data/*.csv
-data/*.tsv
-data/*.json
-data/*.parquet
-data/*.feather
-*.gz
-*.zip
-*.tar
-*.rar
-*.7z
-*.hdf5
-*.h5
-*.mat
-*.pkl
 
-# ==============================
-# Model files
-# ==============================
-/models/*.h5
-/models/*.pkl
-/models/*.ckpt
-/models/*.onnx
-/models/*.pt
-/models/*.tflite
-/models/*.joblib
-/models/*.sav
+# OS-specific
+.DS_Store
 
-# ==============================
-# Optimization Results and Output Files
-# ==============================
-*.out
-*.log
-*.err
-*.dat
-*.res
-*.sol
-/results/
-outputs/
-outputs/
+# Docker
+*.dockerfile
 
-# ==============================
-# Temporary and Cache Files
-# ==============================
-*.tmp
-*.cache
-*.mypy_cache/
-*.pytest_cache/
-*.hypothesis/
-.tox/
-.nox/
-.coverage
-*.coverage
-htmlcov/
-__pycache__/
-.cache/
+# HPC
+*.slurm.out
+*.slurm.err
+*.slurm
 
-# ==============================
-# IDE-specific files
-# ==============================
-.vscode/
-*.code-workspace
+# Eclipse or VSCode etc.
+.project
+.settings/
 .idea/
-*.iml
-*.swp
-*.swo
-
-# ==============================
-# Git Ignore Overrides
-# ==============================
-!notebooks/
-!data/example_data.csv
+.vscode/
