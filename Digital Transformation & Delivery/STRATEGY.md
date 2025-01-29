@@ -148,16 +148,16 @@ Below is a high-level **Component Diagram** illustrating how different systems i
 |                                      Azure Cloud                                                        |
 | --------------------------------------------------------------------------------------------------------|
 |  +---------------------------------+               +---------------------------------------------+      |
-|  |  Data Ingestion Service         |               |  PDE Modeling Service (UC-02)              |       |
-|  |  (UC-01)                        |               |  - Fourier, Fick, B–Volmer Models          |       |
-|  |  - Sensor / SCADA Connectors    | ---- ETL ---> |  - HPC/Grid Compute                        |       |
+|  |  Data Ingestion Service         |               |  PDE Modeling Service (UC-02)               |      |
+|  |  (UC-01)                        | ---- ETL ---> |  - Fourier, Fick, B–Volmer Models           |      |
+|  |  - Sensor / SCADA Connectors    |               |  - HPC/Grid Compute                         |      |
 |  |  - Cleansing / Validation       |               +----------+----------------------------------+      |
 |  +---------------------------------+                                |                                   |
 |             |                                                       | (Model outputs, results)          |
 |             | (Transformed data)                                    v                                   |
 |  +----------------------------------+           +-------------------------------------------------+     |
-|  |    Data Lake / Lakehouse         |<----------|   Optimization Engine (UC-03)                   |     |
-|  |    - Bronze, Silver, Gold zones  |           |   - Pyomo/CVXPY, NLP, Genetic Algorithms        |     |
+|  |    Data Lake / Lakehouse         |           |   Optimization Engine (UC-03)                   |     |
+|  |    - Bronze, Silver, Gold zones  | <-------- |   - Pyomo/CVXPY, NLP, Genetic Algorithms        |     |
 |  |    - Historical & real-time      |           |   - RESTful API                                 |     |
 |  +----------------------------------+           +-------------------------------------------------+     |
 |                                                                              | (Optimized setpoints)    |
