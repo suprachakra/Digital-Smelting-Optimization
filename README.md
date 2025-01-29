@@ -4,7 +4,7 @@ A Data driven approach to Energy Efficiency and Process Enhancement
 ## MetalX Smelting Optimization: A Digital Transformation Project
 
 ### Project Vision
-This repository showcases an Industry 4.0 approach to optimizing MetalX smelting  operations at Da Metalworks Inc. 
+This repository showcases an **Industry 4.0** approach to optimizing **MetalX smelting operations at Metalworks Inc**. 
 By leveraging PDE-based modeling, big data, and advanced optimization, we aim to reduce energy costs by up to 15% while improving sustainability.
 
 ### Key Highlights
