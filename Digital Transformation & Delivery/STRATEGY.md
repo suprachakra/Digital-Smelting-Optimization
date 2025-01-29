@@ -1,9 +1,9 @@
 ## Table of Contents
 
-1. [Objective Function](#objective-function)
+1. Objective
     - [1.1 Context](#11-context)
     - [1.2 Project Mission](#12-project-mission)
-2. [Agile-at-Scale (SAFe) Overview](#agile-at-scale-safe-overview)
+2. Agile-at-Scale (SAFe) Overview
     - [2.1 Agile-at-Scale (SAFe) Overview](#21-agile-at-scale-safe-overview)
     - [2.2 Use Cases & Value Propositions](#22-use-cases--value-propositions)
     - [2.3 Detailed Requirements](#23-detailed-requirements)
