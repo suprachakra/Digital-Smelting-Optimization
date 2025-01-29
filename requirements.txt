@@ -1,1 +1,32 @@
+# Basic Python libraries
+numpy==1.22.0
+pandas==1.4.0
+matplotlib==3.5.1
+seaborn==0.11.2
+
+# PDE / HPC / FEniCS
+fenics==2019.1.0
+# or dolfin, depending on environment
+
+# Optimization
+pyomo==6.4.2
+cvxpy==1.2.0
+ipopt # or whichever solver you prefer
+
+# Dash & Visualization
+dash==1.21.0
+dash-core-components==1.17.1
+dash-html-components==1.1.4
+plotly==5.3.1
+
+# Flask
+Flask==2.1.0
+
+# Kafka
+kafka-python==2.0.2
+
+# Testing
+pytest==7.0.1
+
+# Others as needed
 
