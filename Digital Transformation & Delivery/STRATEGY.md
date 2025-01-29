@@ -1,12 +1,12 @@
 ### 1.1 Context  
 Imagine a global industrial giant—call it **Metalworks Inc.**—which smelts a metal (let’s call it **MetalX**) using a highly energy-intensive electrolytic process. This smelting process is a critical step in producing high-grade metals for automotive, aerospace, construction, and consumer goods.
 
-> ### 1.2 Why This Matters  
+> #### Why This Matters  
 > - **Energy Costs**: MetalX smelting is **notoriously energy-hungry**, leading to high operating expenses.  
 > - **Environmental Footprint**: Inefficiencies lead to excessive **CO₂ and other greenhouse gas (GHG)** emissions.  
 > - **Competitive Pressure**: Global Metalworks Inc. competes with other top smelters and must continuously **improve operational efficiency** to remain profitable.
 
-### 1.3 Project Mission  
+### 1.2 Project Mission  
 - **Digital Transformation to Industry 4.0**: Move from traditional, manual, or purely empirical methods to a robust, **data-driven** approach incorporating **mathematical modeling**, **IoT data**, **advanced analytics**, and **agile delivery**.  
 - **End Goal**: Achieve significant **cost savings** (assume up to **10–15%** energy reduction) while maintaining or improving **MetalX** quality.  
 
