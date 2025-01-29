@@ -1,3 +1,39 @@
+## Table of Contents
+
+1. [Objective Function](#objective-function)
+    - [1.1 Context](#11-context)
+    - [1.2 Project Mission](#12-project-mission)
+2. [Agile-at-Scale (SAFe) Overview](#agile-at-scale-safe-overview)
+    - [2.1 Agile-at-Scale (SAFe) Overview](#21-agile-at-scale-safe-overview)
+    - [2.2 Use Cases & Value Propositions](#22-use-cases--value-propositions)
+    - [2.3 Detailed Requirements](#23-detailed-requirements)
+        - [2.3.1 Functional Requirements](#231-functional-requirements)
+        - [2.3.2 Non-Functional Requirements](#232-non-functional-requirements)
+    - [2.4 Use Case Diagram (Sample)](#24-use-case-diagram-sample)
+    - [2.5 Component Diagram (High-Level)](#25-component-diagram-high-level)
+    - [2.6 API Design & Guidelines](#26-api-design--guidelines)
+        - [2.6.1 Example Endpoint](#261-example-endpoint)
+        - [2.6.2 Request Headers](#262-request-headers)
+        - [2.6.3 Response Headers](#263-response-headers)
+        - [2.6.4 Typical JSON Request Body](#264-typical-json-request-body)
+        - [2.6.5 Typical JSON Response Body](#265-typical-json-response-body)
+        - [2.6.6 Error Codes Table](#266-error-codes-table)
+    - [2.7 Mentorship & Product Management Community of Practice (CoP)](#27-mentorship--product-management-community-of-practice-cop)
+        - [2.7.1 CoP Charter & Goals](#271-cop-charter--goals)
+        - [2.7.2 CoP Membership & Roles](#272-cop-membership--roles)
+        - [2.7.3 CoP Sessions & Frequency](#273-cop-sessions--frequency)
+        - [2.7.4 CoP Success Metrics](#274-cop-success-metrics)
+    - [2.8 SAFe Ceremonies, Deliverables & KPIs](#28-safe-ceremonies-deliverables--kpis)
+        - [2.8.1 Team-Level Ceremonies (per Sprint)](#281-team-level-ceremonies-per-sprint)
+        - [2.8.2 Program-Level (PI) Ceremonies](#282-program-level-pi-ceremonies)
+        - [2.8.3 Key Agile Delivery KPIs](#283-key-agile-delivery-kpis)
+    - [2.9 Project KPIs & Targets](#29-project-kpis--targets)
+    - [2.10 Stakeholder Engagement & Resource Allocation](#210-stakeholder-engagement--resource-allocation)
+    - [2.11 Conclusion & Next Steps](#211-conclusion--next-steps)
+  
+      
+--------------
+
 ### 1.1 Context  
 Imagine a global industrial giant—call it **Metalworks Inc.**—which smelts a metal (let’s call it **MetalX**) using a highly energy-intensive electrolytic process. This smelting process is a critical step in producing high-grade metals for automotive, aerospace, construction, and consumer goods.
 
