@@ -64,13 +64,13 @@ Building on PDE outputs, we formulate an **optimization problem** to minimize en
 1. **Objective Function**  
   
    $\[
-     \text{Minimize} \quad \int_0^T (V(t) \cdot I(t))\, dt
-   \]  \$
+     \text Minimize} \quad \int_0^T (V(t) \cdot I(t))\, dt
+   \  \$
    <br> where \(V(t)\) is the applied voltage, \(I(t)\) is current. Alternatively, a **multi-objective** approach can be used:
 
-   $\[
+   $\
      \min \{ E, \; GHG, \; \text{AnodeEffects} \}
-   \]$
+   \$
    <br> solved via **Pareto front** methods or weighted sums.
 
 2. **Key Constraints**  
