@@ -66,7 +66,8 @@ Building on PDE outputs, we formulate an **optimization problem** to minimize en
   >   \text{Minimize} \quad \int_0^T (V(t) \cdot I(t))\, dt
   > \]$
   > <br>where \(V(t)\) is the applied voltage, \(I(t)\) is current. Alternatively, a **multi-objective** approach can be used:
-><br>
+<br>
+<br>
  >  $\[
  >    \min \{ E, GHG, \text{AnodeEffects} \}
  >  \]$
