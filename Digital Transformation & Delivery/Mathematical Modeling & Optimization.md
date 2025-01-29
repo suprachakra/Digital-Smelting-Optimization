@@ -66,21 +66,21 @@ Building on PDE outputs, we formulate an **optimization problem** to minimize en
    $\[
      \text{Minimize} \quad \int_0^T (V(t) \cdot I(t))\, dt
    \]  \$
-   where \(V(t)\) is the applied voltage, \(I(t)\) is current. Alternatively, a **multi-objective** approach can be used:
-$\
-   \[
+   <br> where \(V(t)\) is the applied voltage, \(I(t)\) is current. Alternatively, a **multi-objective** approach can be used:
+
+   $\[
      \min \Big\{ E, \; GHG, \; \text{AnodeEffects} \Big\}
-   \]$
-   solved via **Pareto front** methods or weighted sums.
+   \]\$
+   <br> solved via **Pareto front** methods or weighted sums.
 
 2. **Key Constraints**  
-   - **Thermal**: \(T_{\text{min}} \le T(x,y,z,t) \le T_{\text{max}}\) to avoid damage to cell lining.  
-   - **Production Throughput**: \(\text{Throughput} \ge \text{TargetRate}\).  
-   - **Voltage/Current Limits**: \(V(t) \in [V_{\min}, V_{\max}]\), \(I(t) \in [I_{\min}, I_{\max}]\).  
+   - **Thermal**: $\(T_{\text{min}} \le T(x,y,z,t) \le T_{\text{max}}\)$ to avoid damage to cell lining.  
+   - **Production Throughput**: $\(\text{Throughput} \ge \text{TargetRate}\)$.  
+   - **Voltage/Current Limits**: $\(V(t) \in [V_{\min}, V_{\max}]\), \(I(t) \in [I_{\min}, I_{\max}]\). $ 
    - **Material Balance**: PDE-based states (concentration, mass flow) must remain feasible.
 
 3. **Variables & Parameters**  
-   - **Decision Variables**: Voltage setpoint \(V\), current density \(i\), anode position or insertion timing.  
+   - **Decision Variables**: Voltage setpoint $\(V\)$, current density \(i\), anode position or insertion timing.  
    - **Parameters**: PDE constants (k, D), cost factors for energy, CO₂ emissions factor, throughput demands.
 
 4. **Solution Methods**  
