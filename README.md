@@ -32,7 +32,7 @@ By leveraging PDE-based modeling, big data, and advanced optimization, we aim to
 - **hpc_scripts**: Scale PDE computations (thermal, mass transfer, combined) to handle large meshes or multiple smelting cells simultaneously
 
 ### Getting Started
-1. **Clone the Repo**: `git clone https://github.com/username/metalx-smelting-optimization.git`
+1. **Clone the Repo**
 2. **Install Dependencies**: `pip install -r requirements.txt`
 3. **Run Notebooks**: Explore `notebooks/` for data exploration and PDE modeling
 4. **Optimization**: To run an optimization scenario, navigate to `optimization/` and execute 
