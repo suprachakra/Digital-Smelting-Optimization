@@ -7,6 +7,7 @@ Usage:
 
 import argparse
 import dolfin  # or fenics
+import logging
 from models.thermal_model import ThermalModel
 
 def main():
@@ -33,12 +34,13 @@ def main():
     # Run simulation
     results = model.run_simulation(total_time=args.time, dt=args.dt)
 
-    # Print final average temperature
+    # Log final average temperature
     final_temp_values = results[-1].vector().get_local()
     avg_temp = sum(final_temp_values)/len(final_temp_values)
     rank = dolfin.MPI.rank(dolfin.MPI.comm_world)
+    logging.basicConfig(level=logging.INFO)
     if rank == 0:
-        print(f"Final average temperature: {avg_temp:.2f} K (nx={args.nx}, ny={args.ny})")
+        logging.info(f"Final average temperature: {avg_temp:.2f} K (nx={args.nx}, ny={args.ny})")
 
 if __name__ == "__main__":
     main()
