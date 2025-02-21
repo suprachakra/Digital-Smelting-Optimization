@@ -115,43 +115,41 @@ Like in previous sections, we present **Functional Requirements (FR)** and **Non
 
 Below is an **expanded** architecture showing **batch** and **real-time** data flows, including where PDE modeling, optimization, and dashboards interact.
 
-```
-                      +-----------------------------+
-                      |        SCADA/IoT Gateways  |
-                      | (Sensors: Voltage, Current,|
-                      |  Temp, Chemical Analysis)   |
-                      +-----------+-----------------+
-                                  | (Raw Data Stream)
-                                  v
-   +---------------------------------------------------+   +---------------------------+
-   |               Data Ingestion Service              |-->|  Real-Time Processing     |
-   | (Streaming ingestion with Kafka/other connectors) |   | (Future: Kafka Streams,   |
-   +------------------+--------------------------------+   |  Spark, Flink, etc.)      |
-                      |                                    +----------+----------------+
-                      |                                               |
-(Landing in Bronze)   |                                               v
-                      v                       +---------------------------------------+
-+-------------------------------+             | PDE/Optimization Cluster (Batch/Real) |
-|  Data Lake (Bronze, Silver,   |-------------|(Pull curated data for PDE & Opt runs) |
-|  Gold zones: Raw & Processed) |             |(Write results back to curated/Gold)   |
-+-------------------------------+             +---------------------------------------+
-        | (ETL/ELT jobs)         \
-        |                         \
-        v                          \
-+------------------------+          \
-| Orchestration &        |           \
-|  Scheduling (Airflow,  |------------>  +-----------------------------+
-|  Azure Data Factory)   |               |  Operational Dashboards     |
-+------------+-----------+               | (Plotly/Dash)               |
-             |                           +--------------+--------------+
-             |                                           |
-             | (Scheduling pipeline runs, dependencies)  |
-             v                                           v
-  +------------------------+              +-----------------------------------+
-  | Digital Twin & ML      |<-------------| HPC or Cloud ML Environment       |
-  | (UC-06: Anomaly Detect)|              | (Batch or streaming ML pipelines) |
-  +------------------------+              +-----------------------------------+
-```
+```mermaid
+                flowchart TB
+    A["SCADA/IoT Gateways<br> Sensors -&gt; Voltage,<br>Current, Temp,<br>Chemical Analysis"] -- Raw Data Stream --> B["Data Ingestion Service<br>  Kafka/Connectors"]
+    B -- "Ingest -> Bronze" --> D["Data Lake -&gt; Bronze,<br>Silver, Gold"]
+    B --> C["Real-Time Processing<br> Kafka Streams,<br>Spark, Flink, etc."]
+    C -- Optional --> D
+    D --> E["PDE/Optimization Cluster<br> Batch/Real-Time<br>Pull/Write Curated Data"]
+    D -- ETL/ELT jobs --> F["Orchestration &amp; Scheduling<br> Airflow, Azure Data Factory"]
+    F --> I["HPC/Cloud ML Env<br> Batch or Streaming Pipelines"]
+    I --> H["Digital Twin &amp; ML<br> Anomaly Detection"]
+    H --> I
+    E --> D
+    F -- Scheduling<br>Pipeline Runs --> G["Operational Dashboards<br> Plotly/Dash"]
+    G --> E
+
+     A:::scada
+     B:::ingestion
+     C:::ingestion
+     D:::dataLake
+     E:::pde
+     F:::orchestr
+     G:::dashboards
+     H:::dt
+     I:::HPC
+    classDef scada fill:#f1c232,stroke:#7f6000,stroke-width:2px,color:#000,font-weight:bold
+    classDef ingestion fill:#93c47d,stroke:#38761d,stroke-width:2px,color:#000,font-weight:bold
+    classDef dataLake fill:#6fa8dc,stroke:#0b5394,stroke-width:2px,color:#000,font-weight:bold
+    classDef pde fill:#ffd966,stroke:#bf9000,stroke-width:2px,color:#000,font-weight:bold
+    classDef HPC fill:#b4a7d6,stroke:#674ea7,stroke-width:2px,color:#000,font-weight:bold
+    classDef dashboards fill:#c9daf8,stroke:#1155cc,stroke-width:2px,color:#000,font-weight:bold
+    classDef orchestr fill:#ffe599,stroke:#e69138,stroke-width:2px,color:#000,font-weight:bold
+    classDef dt fill:#d5a6bd,stroke:#741b47,stroke-width:2px,color:#000,font-weight:bold
+
+
+````
 
 1. **SCADA/IoT Gateways** push sensor data to the **Data Ingestion Service**.  
 2. **Ingestion** writes raw data to **Bronze** layer in the **Data Lake**.  
