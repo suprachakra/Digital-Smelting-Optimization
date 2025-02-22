@@ -187,43 +187,56 @@ flowchart TD
 
 Below is a high-level **Component Diagram** illustrating how different systems integrate:
 
-```
-+---------------------------------------------------------------------------------------------------------+
-|                                      Azure Cloud                                                        |
-| --------------------------------------------------------------------------------------------------------|
-|  +---------------------------------+               +---------------------------------------------+      |
-|  |  Data Ingestion Service         |               |  PDE Modeling Service (UC-02)               |      |
-|  |  (UC-01)                        | ---- ETL ---> |  - Fourier, Fick, B–Volmer Models           |      |
-|  |  - Sensor / SCADA Connectors    |               |  - HPC/Grid Compute                         |      |
-|  |  - Cleansing / Validation       |               +----------+----------------------------------+      |
-|  +---------------------------------+                                |                                   |
-|             |                                                       | (Model outputs, results)          |
-|             | (Transformed data)                                    v                                   |
-|  +----------------------------------+           +-------------------------------------------------+     |
-|  |    Data Lake / Lakehouse         |           |   Optimization Engine (UC-03)                   |     |
-|  |    - Bronze, Silver, Gold zones  | <-------- |   - Pyomo/CVXPY, NLP, Genetic Algorithms        |     |
-|  |    - Historical & real-time      |           |   - RESTful API                                 |     |
-|  +----------------------------------+           +-------------------------------------------------+     |
-|                                                                              | (Optimized setpoints)    |
-|                                                                              v                          |
-|                                                                     +-------------------------------+   |
-|                                                                     |  SCADA Integration (UC-05)    |   |
-|                                                                     |  - Real-time commands         |   |
-|                                                                     |  - Safety checks, override    |   |
-|                                                                     +---------------+---------------+   |
-|                                                                                     | (Data backflow)   |
-|                                                                                     v                   |
-|  +---------------------------------+                                +--------------------------------+  |
-|  |  Digital Twin & ML (UC-06)      |<-------------------------------|  Real-Time Events (Streaming)  |  |
-|  |  - Anomaly detection (LSTM, RNN)|                                +--------------------------------+  |
-|  |  - Virtual environment          |                                                         ^          |
-|  +---------------------------------+                                                (Alerts) |          |
-|                                                                                              |          |
-|                                                                  +---------------------------+----------+
-|                                                                  |    Operational Dashboards (UC-04)    |
-|                                                                  |    - Visual Analytics, KPIs, Alerts  |
-|                                                                  +--------------------------------------+
-+---------------------------------------------------------------------------------------------------------+
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart TD
+ subgraph Azure_Cloud["🌐 AZURE CLOUD"]
+        A["📥 Data Ingestion Service<br> (UC-01) <br> - Sensor / SCADA Connectors <br> - Cleansing / Validation"]
+        B["🧮 PDE Modeling Service<br> (UC-02) <br> - Fourier, Fick, Butler-Volmer Models <br> - HPC/Grid Compute"]
+        C["🗄️ Data Lake / Lakehouse <br> - Bronze, Silver, Gold zones <br> - Historical &amp; Real-Time Storage"]
+        D["🧠 Optimization Engine<br> (UC-03) <br> - Pyomo, CVXPY, NLP, Genetic Algorithms <br> - RESTful API"]
+        E["🔗 SCADA Integration<br> (UC-05) <br> - Real-Time Commands <br> - Safety Checks &amp; Overrides"]
+        F["🖥️ Digital Twin &amp; ML<br> (UC-06) <br> - Anomaly Detection (LSTM, RNN) <br> - Virtual Environment"]
+        G["📡 Real-Time Events (Streaming)"]
+        H["📊 Operational Dashboards<br>(UC-04) <br> - Visual Analytics, KPIs, Alerts"]
+  end
+    A -- ETL --> B
+    A -- Transformed Data --> C
+    B -- Model Outputs & Results --> D
+    C <---> D
+    D -- Optimized Setpoints --> E
+    E -- Data Backflow --> F
+    F <---> G
+    G -- Alerts --> H
+    H -- Feedback Loop --> G
+     A:::data_ingestion
+     A:::data_ingestion
+     B:::pde_modeling
+     B:::pde_modeling
+     C:::data_storage
+     C:::data_storage
+     D:::optimization_engine
+     D:::optimization_engine
+     E:::scada
+     E:::scada
+     F:::digital_twin
+     F:::digital_twin
+     G:::real_time_events
+     G:::real_time_events
+     H:::dashboard
+     H:::dashboard
+    classDef title fill:#2C3E50,stroke:#2C3E50,stroke-width:2px,color:white,font-size:18px,font-weight:bold
+    classDef data_ingestion fill:#3498DF,stroke:#1F618D,stroke-width:2px,color:white,font-weight:bold
+    classDef pde_modeling fill:#E67E22,stroke:#D35400,stroke-width:2px,color:white,font-weight:bold
+    classDef data_storage fill:#F39C12,stroke:#D68910,stroke-width:2px,color:white,font-weight:bold
+    classDef optimization_engine fill:#9B59B6,stroke:#8E44AD,stroke-width:2px,color:white,font-weight:bold
+    classDef scada fill:#2980B9,stroke:#1F618D,stroke-width:2px,color:white,font-weight:bold
+    classDef digital_twin fill:#2ECC71,stroke:#27AE60,stroke-width:2px,color:white,font-weight:bold
+    classDef real_time_events fill:#8E44AD,stroke:#6C3483,stroke-width:2px,color:white,font-weight:bold
+    classDef dashboard fill:#27AE60,stroke:#1F8E4D,stroke-width:2px,color:white,font-weight:bold
 ```
 
 #### Component Responsibilities
