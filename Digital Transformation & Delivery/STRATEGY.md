@@ -163,14 +163,14 @@ flowchart TD
      F:::scada
      G:::ml
      G:::ml
-    classDef title fill:#2C3E50,stroke:#2C3E50,stroke-width:2px,color:white,font-size:18px,font-weight:bold
-    classDef actor fill:#3498DB,stroke:#1F618D,stroke-width:2px,color:white,font-weight:bold
-    classDef dashboard fill:#27AE60,stroke:#1F8E4D,stroke-width:2px,color:white,font-weight:bold
-    classDef data fill:#F39C12,stroke:#D68910,stroke-width:2px,color:white,font-weight:bold
-    classDef process fill:#E67E22,stroke:#D35400,stroke-width:2px,color:white,font-weight:bold
-    classDef optimization fill:#9B59B6,stroke:#8E44AD,stroke-width:2px,color:white,font-weight:bold
-    classDef scada fill:#2980B9,stroke:#1F618D,stroke-width:2px,color:white,font-weight:bold
-    classDef ml fill:#8E44AD,stroke:#6C3483,stroke-width:2px,color:white,font-weight:bold
+    classDef title fill:#2C3E50,stroke:#2C3E50,stroke-width:2px,color:white,font-size:18px
+    classDef actor fill:#3498DB,stroke:#1F618D,stroke-width:2px,color:white
+    classDef dashboard fill:#27AE60,stroke:#1F8E4D,stroke-width:2px,color:white
+    classDef data fill:#F39C12,stroke:#D68910,stroke-width:2px,color:white
+    classDef process fill:#E67E22,stroke:#D35400,stroke-width:2px,color:white
+    classDef optimization fill:#9B59B6,stroke:#8E44AD,stroke-width:2px,color:white
+    classDef scada fill:#2980B9,stroke:#1F618D,stroke-width:2px,color:white
+    classDef ml fill:#8E44AD,stroke:#6C3483,stroke-width:2px,color:white
 ```
 
 #### Actors & Their Interactions
