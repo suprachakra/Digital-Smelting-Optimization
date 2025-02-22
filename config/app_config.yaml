@@ -1,0 +1,21 @@
+// Global app config (port, debug mode, etc.)
+
+# Global application configuration
+
+app:
+  name: "Digital Smelting Optimization"
+  version: "0.2.0"
+  debug: false
+  port: 5000
+
+logging:
+  level: "INFO"
+  file: "/var/log/metalx/app.log"
+
+database:
+  type: "postgres"
+  host: "db.metalx.local"
+  port: 5432
+  user: "metalx_user"
+  password: "supersecret"
+  dbname: "metalx_db"
