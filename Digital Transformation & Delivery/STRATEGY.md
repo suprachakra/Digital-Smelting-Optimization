@@ -139,41 +139,38 @@ We will focus on **6 key use cases** that are the highest priority and have the 
 
 A simplified **Use Case Diagram** for the “Data Ingestion & Optimization” flow might look like that shows multiple **actors** (Engineer, Plant Manager, Control System, etc.)and how they interact with the **system components** (Data Ingestion, PDE Models, Optimization, Dashboards, SCADA, ML/Anomaly Detection).:
 
-```
-                                             +--------------------------+
-                                             |      Plant Manager       |
-                                             +-----------+--------------+
-                                                         |
-                                                         | (Views real-time dashboards, sets thresholds)
-                                                         v
-                                    +----------------------------------------+
-                                    |     Operational Dashboards (UC-04)     |
-                                    +------------------+---------------------+
-                                                       |
-                                                       | (Requests PDE results, optimization outputs)
-                                                       v
-+-------------------------+                 +-------------------------------+     +---------------------+
-|  Data Ingestion (UC-01) |  -------------> |      PDE Models (UC-02)       | --> | Optimization Engine |
-|  (Collect & ETL data)   |  (Clean, Store) |   (Fourier, Fick, B–Volmer)   |     |   (UC-03)           |
-+-------------------------+                 +-------------+-----------------+     +---------------------+
-                                                       |                                |
-                                                       | (Model results)                | (Optimized setpoints)
-                                                       |                                |
-                                                       +---------------+----------------+
-                                                                       |
-                                                                       | (Integrate recommended params)
-                                                                       v
-                                                        +----------------------------------+
-                                                        |     SCADA Integration (UC-05)    |
-                                                        |  (Real-time control adjustments) |
-                                                        +----------------------------------+
-                                                                       |
-                                                                       | (System feedback loop)
-                                                                       v
-                                                           +------------------------------+
-                                                           |   Digital Twin / ML (UC-06)  |
-                                                           |   (Anomaly Detection, R&D)   |
-                                                           +------------------------------+
+```mermaid
+flowchart TD
+    A["👨‍💼 PLANT MANAGER"] -- "Views real-time dashboards, & Sets Thresholds" --> B["📊 Operational Dashboards<br> (UC-04) <br> (Views real-time data, sets thresholds)"]
+    B -- Requests PDE results & Optimization outputs --> D["🧮 PDE Models<br>(UC-02) <br> (Fourier, Fick, Butler–Volmer)"]
+    C["📥 Data Ingestion<br> (UC-01) <br> (Collect, Clean, Store, ETL)"] -- Clean & Store Data --> D
+    D -- Model Results --> E["🧠 Optimization Engine<br>(UC-03) <br> (Optimized setpoints)"]
+    E -- Optimized Setpoints --> F["🔗 SCADA Integration<br>(UC-05) <br> (Real-time control adjustments)"]
+    F -- System Feedback Loop --> G["🖥️ Digital Twin / ML<br> (UC-06) <br> (Anomaly Detection, R&amp;D)"]
+    G -- Anomaly Detection & Insights --> B
+    
+     A:::actor
+     A:::actor
+     B:::dashboard
+     B:::dashboard
+     D:::process
+     D:::process
+     C:::data
+     C:::data
+     E:::optimization
+     E:::optimization
+     F:::scada
+     F:::scada
+     G:::ml
+     G:::ml
+    classDef title fill:#2C3E50,stroke:#2C3E50,stroke-width:2px,color:white,font-size:18px,font-weight:bold
+    classDef actor fill:#3498DB,stroke:#1F618D,stroke-width:2px,color:white,font-weight:bold
+    classDef dashboard fill:#27AE60,stroke:#1F8E4D,stroke-width:2px,color:white,font-weight:bold
+    classDef data fill:#F39C12,stroke:#D68910,stroke-width:2px,color:white,font-weight:bold
+    classDef process fill:#E67E22,stroke:#D35400,stroke-width:2px,color:white,font-weight:bold
+    classDef optimization fill:#9B59B6,stroke:#8E44AD,stroke-width:2px,color:white,font-weight:bold
+    classDef scada fill:#2980B9,stroke:#1F618D,stroke-width:2px,color:white,font-weight:bold
+    classDef ml fill:#8E44AD,stroke:#6C3483,stroke-width:2px,color:white,font-weight:bold
 ```
 
 #### Actors & Their Interactions
