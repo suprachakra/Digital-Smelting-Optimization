@@ -1,0 +1,32 @@
+// Dev-specific Dockerfile (optional)
+
+# Dockerfile for development environment
+# with additional tools for debugging, linting, etc.
+
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    python3 python3-pip \
+    vim git curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install dev dependencies
+COPY requirements.txt /tmp/
+RUN pip3 install --upgrade pip && pip3 install -r /tmp/requirements.txt
+
+# Install optional dev tools
+RUN pip3 install black flake8 ipython
+
+# Create dev user
+RUN useradd -m metalxdev
+USER metalxdev
+WORKDIR /home/metalxdev
+
+COPY --chown=metalxdev . /home/metalxdev
+
+# Expose port for debugging
+EXPOSE 5000
+
+CMD ["/bin/bash"]
