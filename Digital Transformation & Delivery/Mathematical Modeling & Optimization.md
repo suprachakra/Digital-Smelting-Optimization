@@ -95,39 +95,53 @@ Building on PDE outputs, we formulate an **optimization problem** to minimize en
 
 Below is a **flow diagram** showcasing how the PDE solutions feed into the optimization routine:
 
-```
-  +---------------------------+
-  |   PDE Model Simulation    |  (Thermal, Mass Transfer,
-  |  (FEniCS / SfePy)         |   Electrochemical)
-  +-----------+--------------  -+
-              |
-              | PDE Outputs (Temp, Conc, Current)
-              v
-  +---------------------------+        +------------------------------+
-  | Data Transformation Layer |  ----> |  Optimization Engine (Pyomo) |
-  | (Aggregates PDE results)  |        |  - NLP / GA / Hybrid         |
-  +-----------+---------------+        +-------------------+----------+
-              |                                            |
-              | (Valid constraints, boundary conditions)   |
-              v                                            |
-  +---------------------------+                            |
-  |     Constraints &         |                            |
-  |     Business Rules        | <--------------------------+
-  +-----------+---------------+
-              |
-              | (Voltage, Current Range, Production Targets)
-              v
-  +---------------------------+
-  |   Solver Execution &      |
-  |   Convergence Check       |
-  +-----------+---------------+
-              |
-              | (Optimal Set Points, e.g., V*, I*, anode schedule)
-              v
-  +---------------------------+
-  |  Results & Integration    |
-  |  with SCADA / Dashboards  |
-  +---------------------------+
+```mermaid
+
+flowchart TD
+ subgraph Legend["Legend"]
+        X1["🎯 PDE Processing"]
+        X2["📊 Data Handling"]
+        X3["🛠 Rules & Constraints"]
+        X4["⚙ Execution & Optimization"]
+        X5["📡 Integration & Results"]
+  end
+ subgraph PDE_Sim["PDE Model Simulation<br>Thermal, Mass Transfer, Electrochem"]
+        A["PDE Model FEniCS / SfePy"]
+  end
+    A -- 📤 PDE Outputs Temp, Conc, Current --> B["Data Transformation Layer"]
+    B -- ✔ Valid Constraints, Boundary Conditions --> C["Optimization Engine<br> Pyomo - NLP/GA/Hybrid"]
+    C -- ⚡ Voltage, Current Range, Production Targets --> D["Constraints & Business Rules"]
+    D -- 🎯 Optimal Set Points V*, I*, Anode Schedule --> E["Solver Execution & Convergence"]
+    B -- 🔄 Aggregated PDE results --> F["Results &amp; Integration<br>with SCADA/Dashboards"]
+    F -- 🔍 Constraints & Boundary Conditions --> C
+    F -- 🚀 Optimization Outputs --> D
+    A -- PDE Outputs<br> Temp, Conc, Current --> B
+    B -- Aggregated PDE Results --> C
+    C -- Valid constraints<br>Boundary conditions --> D
+    D -- Voltage, Current Range,<br>Production Targets --> E
+    E -- Optimal Set Points<br> V*, I*, anode schedule --> F
+    C -- Constraint Updates --> D
+    T["<b>PDE-Based Optimization Workflow</b>"]
+     X1:::primary
+     X2:::secondary
+     X3:::warning
+     X4:::danger
+     X5:::finalstage
+     A:::primary
+     B:::secondary
+     C:::warning
+     D:::danger
+     E:::finalstage
+     F:::primary
+     T:::title
+    classDef title fill:#2C3E50,stroke:#2C3E50,stroke-width:2px,color:#ffffff,font-size:18px,font-weight:bold
+    classDef primary fill:#3498DB,stroke:#1F618D,stroke-width:2px,color:white,font-weight:bold
+    classDef secondary fill:#2ECC71,stroke:#27AE60,stroke-width:2px,color:white,font-weight:bold
+    classDef warning fill:#E67E22,stroke:#D35400,stroke-width:2px,color:white,font-weight:bold
+    classDef danger fill:#E74C3C,stroke:#C0392B,stroke-width:2px,color:white,font-weight:bold
+    classDef finalStage fill:#9B59B6,stroke:#8E44AD,stroke-width:2px,color:white,font-weight:bold
+    classDef subgraphStyle fill:#34495E,stroke:#2C3E50,stroke-width:2px,color:white,font-size:24px,font-weight:bold
+
 ```
 
 1. **PDE Model Simulation**: Takes physical properties, initial/boundary conditions, solves for temperature and concentration fields.  
@@ -198,17 +212,20 @@ Below is a **flow diagram** showcasing how the PDE solutions feed into the optim
 
 #### 3.5.1 PDE + Optimization High-Level Sequence Diagram
 
-```
-Engineer/Operator        PDE Solver (FEniCS)          Optimization Engine (Pyomo)       SCADA System
-       |                         |                              |                           |
-       |---(1) Submit PDE Job -> |                              |                           |
-       |                         |--(2) Solve PDE ------------->|                           |
-       |                         |                              |-(3) Evaluate constraints->|
-       |                         |                              |-(4) Generate setpoints----|
-       |                         |<-(5) PDE results updated-----|                           |
-       |<-(6) PDE results + setpoints---------------------------|                           |
-       |--------------------------------------------------------|->(7) Send commands------->|
-       |                                                                                    |
+```mermaid
+sequenceDiagram
+  participant Engineer/Operator as Engineer/Operator
+  participant PDE Solver (FEniCS) as PDE Solver (FEniCS)
+  participant Optimization Engine (Pyomo) as Optimization Engine (Pyomo)
+  participant SCADA System as SCADA System
+
+  Engineer/Operator ->> PDE Solver (FEniCS): (1) Submit PDE Job
+  PDE Solver (FEniCS) ->> Optimization Engine (Pyomo): (2) Solve PDE
+  Optimization Engine (Pyomo) ->> SCADA System: (3) Evaluate constraints
+  Optimization Engine (Pyomo) ->> SCADA System: (4) Generate setpoints
+  Optimization Engine (Pyomo) -->> PDE Solver (FEniCS): (5) PDE results updated
+  Optimization Engine (Pyomo) -->> Engineer/Operator: (6) PDE results + setpoints
+  Engineer/Operator -->> SCADA System: (7) Send commands                                                  |
 ```
 
 1. Engineer or automated script **submits** PDE job to the **PDE Solver**.  
