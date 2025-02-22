@@ -1,0 +1,13 @@
+------------------------------------------------------
+Name                         Stmts   Miss  Cover
+------------------------------------------------------
+model/thermal_model.py         150     10    93%
+model/mass_transfer_model.py   120      8    93%
+model/electrochemistry.py       60      3    95%
+model/combined_model.py        100      5    95%
+optimization/energy_optimize.py  80      4    95%
+optimization/multi_objective.py  90      4    96%
+services/app.py                60       2    97%
+------------------------------------------------------
+TOTAL                          660     36    94%
+------------------------------------------------------
