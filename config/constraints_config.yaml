@@ -1,0 +1,21 @@
+# PDE & Optimization Constraints
+
+temperature:
+  min: 779
+  max: 782
+
+throughput:
+  min_current_factor: 0.8
+  baseline_current: 120
+
+voltage_bounds:
+  min: 4.0
+  max: 5.0
+
+current_bounds:
+  min: 100
+  max: 130
+
+safety:
+  max_anode_events: 5
+  # Additional constraints for SCADA integration
