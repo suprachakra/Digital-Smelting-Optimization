@@ -1,0 +1,23 @@
+# HPC simulation configuration
+
+hpc:
+  default_mesh_size:
+    nx: 100
+    ny: 100
+  max_mesh_size:
+    nx: 1000
+    ny: 1000
+  time_stepping:
+    default_dt: 1.0
+    max_time: 100.0
+  solver:
+    type: "gmres"
+    preconditioner: "ilu"
+    tolerance: 1e-6
+  parallel:
+    mpi_processes: 8
+    # For SLURM job submission
+    slurm:
+      nodes: 2
+      ntasks_per_node: 4
+      time_limit: "02:00:00"
