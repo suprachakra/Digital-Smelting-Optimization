@@ -1,25 +1,34 @@
 # API Specifications for Metalworks Inc. Smelting Project
 
  [1. Overview](#1-overview)
+ 
  [2. Data Ingestion & ETL Endpoints (UC-01)](#2-data-ingestion--etl-endpoints-uc-01)
- - [2.1 POST /data-ingestion/streams](#21-post-data-ingestionstreams)
- - [2.2 GET /data-ingestion/streams/{streamId}](##22-get-data-ingestionstreamsstreamid)
+   - [2.1 POST /data-ingestion/streams](#21-post-data-ingestionstreams)
+   - [2.2 GET /data-ingestion/streams/{streamId}](#22-get-data-ingestionstreamsstreamid)
+   
  [3. PDE Models Service (UC-02)](#3-pde-models-service-uc-02)
- - [3.1 POST /pde-models](#31-post-pde-models)
- - [3.2 GET /pde-models/{modelId}](#32-get-pde-modelsmodelid)
- - [3.3 POST /pde-models/{modelId}/simulate](#33-post-pde-modelsmodelidsimulate)
+   - [3.1 POST /pde-models](#31-post-pde-models)
+   - [3.2 GET /pde-models/{modelId}](#32-get-pde-modelsmodelid)
+   - [3.3 POST /pde-models/{modelId}/simulate](#33-post-pde-modelsmodelidsimulate)
+     
  [4. Optimization Service (UC-03)](#4-optimization-service-uc-03)
- - [4.1 POST /optimizations](#41-post-optimizations)
- - [4.2 GET /optimizations/{optimizationId}](#42-get-optimizationsoptimizationid)
+   - [4.1 POST /optimizations](#41-post-optimizations)
+   - [4.2 GET /optimizations/{optimizationId}](#42-get-optimizationsoptimizationid)
+     
  [5. SCADA Integration (UC-05)](#5-scada-integration-uc-05)
  - [5.1 POST /scada/setpoints](#51-post-scadasetpoints)
  - [5.2 GET /scada/status](#52-get-scadastatus)
+   
  [6. Digital Twin & ML (UC-06)](#6-digital-twin--ml-uc-06)
  - [6.1 POST /digital-twin/sync](#61-post-digital-twinsync)
  - [6.2 GET /digital-twin/anomalies](#62-get-digital-twinanomalies)
+   
  [7. Common Request/Response Headers](#7-common-requestresponse-headers)
+  
  [8. Error Codes](#8-error-codes)
+ 
  [9. Versioning & Backward Compatibility](#9-versioning--backward-compatibility)
+ 
  [10. Security & Compliance](#10-security--compliance)
 
 ```
