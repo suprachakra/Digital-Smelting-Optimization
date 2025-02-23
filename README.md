@@ -42,12 +42,16 @@ Digital-Smelting-Optimization/
 ├── CODE_OF_CONDUCT.md           # Community & contributor guidelines
 ├── CONTRIBUTING.md              # How to contribute, PR process, etc.
 ├── SECURITY.md                  # Security reporting guidelines
-├── LICENSE                      # Project license (e.g., MIT or proprietary)
 ├── .gitignore
 ├── requirements.txt
+└── Digital Transformation & Delivery/
+│   ├── API_Specs.md   
+│   ├── Data Management & Analytics Architecture.md         
+│   ├── Mathematical Modeling & Optimization.md
+│   ├──STRATEGY.md  
 ├── docker/
-│   ├── Dockerfile               # Main Docker image for PDE & optimization
-│   └── Dockerfile.dev           # Dev-specific Dockerfile (optional)
+│   ├── Dockerfile             -----------------------   # Main Docker image for PDE & optimization
+│   └── Dockerfile.dev         -----------------------   # Dev-specific Dockerfile (optional)
 ├── ci_cd/
 │   ├── github_actions.yml       # Or Jenkinsfile, GitLab CI, etc.
 │   ├── tests_coverage_report/   # Store coverage artifacts
@@ -95,14 +99,11 @@ Digital-Smelting-Optimization/
 │   ├── app.py                  # Dash or Flask app for dashboards
 │   └── kafka_producer.py       # Kafka producer for sensor simulation
 ├── tests/
-│   ├── test_thermal_model.py
-│   ├── test_optimization.py
-│   ├── test_end_to_end.py
-│   └── test_data/              # Sample test data files
-└── docs/
-    ├── ArchitectureDiagram.md   # Store Mermaid diagrams & architecture docs
-    ├── API_Specs.md            # Detailed API references
-    └── PDE_Modeling_Guide.md   # PDE theory, solver configs, best practices
+    ├── test_thermal_model.py
+    ├── test_optimization.py
+    ├── test_end_to_end.py
+    └── test_data/              # Sample test data files
+                    
 	
 ```
 
@@ -146,7 +147,7 @@ We deliver incremental value using **SAFe** Program Increments (PIs):
 - **PI #2**: Advanced PDE (mass transfer, electrochemistry), HPC scaling, partial optimization (UC-03).  
 - **PI #3**: Real-time dashboards (UC-04) and SCADA integration (UC-05).  
 - **PI #4**: Digital twin & ML anomaly detection (UC-06), plus enterprise rollout.
-
+> Refer to [Roadmap](https://github.com/suprachakra/Digital-Smelting-Optimization/blob/main/Digital%20Transformation%20%26%20Delivery/STRATEGY.md#210-roadmap)
 ---
 
 ## Expected Outcomes
