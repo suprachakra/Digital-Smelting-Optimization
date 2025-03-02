@@ -96,7 +96,6 @@ Building on PDE outputs, we formulate an **optimization problem** to minimize en
 Below is a **flow diagram** showcasing how the PDE solutions feed into the optimization routine:
 
 ```mermaid
-
 flowchart TD
  subgraph Legend["Legend"]
         X1["🎯 PDE Processing"]
@@ -122,18 +121,26 @@ flowchart TD
     E -- Optimal Set Points<br> V*, I*, anode schedule --> F
     C -- Constraint Updates --> D
     T["<b>PDE-Based Optimization Workflow</b>"]
+
      X1:::primary
      X2:::secondary
+     X2:::PastelGreen
      X3:::warning
+     X3:::Peach
      X4:::danger
      X5:::finalstage
+     X5:::Aqua
      A:::primary
      B:::secondary
+     B:::PastelGreen
      C:::warning
+     C:::Peach
      D:::danger
      E:::finalstage
+     E:::Aqua
      F:::primary
      T:::title
+     T:::Pine
     classDef title fill:#2C3E50,stroke:#2C3E50,stroke-width:2px,color:#ffffff,font-size:18px,font-weight:bold
     classDef primary fill:#3498DB,stroke:#1F618D,stroke-width:2px,color:white,font-weight:bold
     classDef secondary fill:#2ECC71,stroke:#27AE60,stroke-width:2px,color:white,font-weight:bold
@@ -141,7 +148,12 @@ flowchart TD
     classDef danger fill:#E74C3C,stroke:#C0392B,stroke-width:2px,color:white,font-weight:bold
     classDef finalStage fill:#9B59B6,stroke:#8E44AD,stroke-width:2px,color:white,font-weight:bold
     classDef subgraphStyle fill:#34495E,stroke:#2C3E50,stroke-width:2px,color:white,font-size:24px,font-weight:bold
-
+    classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
+    classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
+    classDef PastelGreen stroke-width:1px, stroke-dasharray:none, stroke:#82b288, fill:#e2f2df, color:#2e4a3a
+    classDef Pine stroke-width:1px, stroke-dasharray:none, stroke:#254336, fill:#27654A, color:#FFFFFF
+    style PDE_Sim fill:transparent
+    style Legend fill:transparent
 ```
 
 1. **PDE Model Simulation**: Takes physical properties, initial/boundary conditions, solves for temperature and concentration fields.  
