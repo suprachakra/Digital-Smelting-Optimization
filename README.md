@@ -15,6 +15,110 @@ Welcome to **Metalworks Inc.’s** flagship **Industry 4.0** initiative, transfo
 - **Seamless Integration**: Real-time SCADA interactions, digital twin modeling, and HPC scaling for large-scale or 3D smelting simulations.
 
 ---
+```mermaid
+flowchart LR
+ subgraph Data["Data"]
+        A["data/raw -> data/processed"]
+  end
+ subgraph Notebooks["Notebooks"]
+        NB1["1_data_exploration.ipynb"]
+        NB2["2_pde_model_build.ipynb"]
+        NB3["3_simulation_results.ipynb"]
+        NB4["4_optimization_studies.ipynb"]
+        NB5["5_dashboard_prototype.ipynb"]
+  end
+ subgraph PDE_Models["PDE_Models"]
+        M1["Thermal Fourier"]
+        M2["Mass Transfer Fick"]
+        M3["Electrochem Butler-Volmer"]
+        M4["Combined Model"]
+  end
+ subgraph HPC["HPC"]
+        HPC_RUN["run_hpc_simulation.py"]
+        SLURM["run_sim.slurm"]
+  end
+ subgraph Optimization["Optimization"]
+        O1["energy_optimize.py"]
+        O2["multi_objective.py"]
+        O3["constraints.py"]
+        O4["solver_utils.py"]
+  end
+ subgraph SCADA_Integration["SCADA_Integration"]
+        SMOCK["scada_mock.py"]
+        KAFKA["kafka_producer.py"]
+  end
+ subgraph Dash_App["Dash_App"]
+        APP["app.py"]
+  end
+ subgraph Tests["Tests"]
+        T1["test_thermal_model.py"]
+        T2["test_optimization.py"]
+        T3["test_end_to_end.py"]
+  end
+ subgraph Infra["Infra"]
+        REQ["requirements.txt"]
+        DOCKER["Dockerfile"]
+        GIT[".gitignore"]
+  end
+    Data --> NB1
+    NB1 --> Data
+    NB2 --> PDE_Models
+    PDE_Models --> NB3 & HPC & Optimization
+    HPC_RUN --> PDE_Models & SLURM
+    NB4 --> Optimization
+    Optimization --> SCADA_Integration
+    SCADA_Integration --> APP
+    NB5 --> APP
+    Tests --> PDE_Models & Optimization & SCADA_Integration
+    Infra -.-> PDE_Models & Optimization & SCADA_Integration & APP & Tests
+
+     A:::Peach
+     NB1:::Sky
+     NB1:::Pine
+     NB2:::Pine
+     NB3:::Pine
+     NB4:::Pine
+     NB5:::Pine
+     M1:::Aqua
+     M2:::Aqua
+     M3:::Aqua
+     M4:::Aqua
+     HPC_RUN:::Ash
+     SLURM:::Ash
+     O1:::Rose
+     O2:::Rose
+     O3:::Rose
+     O4:::Rose
+     SMOCK:::PastelGreen
+     KAFKA:::PastelGreen
+     APP:::PastelYellow
+     T1:::Sky
+     T2:::Sky
+     T3:::Sky
+     REQ:::PastelPurple
+     DOCKER:::PastelPurple
+     GIT:::PastelPurple
+    classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
+    classDef Pine stroke-width:1px, stroke-dasharray:none, stroke:#254336, fill:#27654A, color:#FFFFFF
+    classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
+    classDef Rose stroke-width:1px, stroke-dasharray:none, stroke:#FF5978, fill:#FFDFE5, color:#8E2236
+    classDef Sky stroke-width:1px, stroke-dasharray:none, stroke:#374D7C, fill:#E2EBFF, color:#374D7C
+    classDef Ash stroke-width:1px, stroke-dasharray:none, stroke:#999999, fill:#EEEEEE, color:#000000
+    classDef Class_04 stroke-width:1px, stroke-dasharray: 0
+    classDef PastelPurple stroke-width:1px, stroke-dasharray:none, stroke:#b39bc8, fill:#ede3f5, color:#4f3c5b
+    classDef PastelGreen stroke-width:1px, stroke-dasharray:none, stroke:#82b288, fill:#e2f2df, color:#2e4a3a
+    classDef PastelYellow stroke-width:1px, stroke-dasharray:none, stroke:#e6c17d, fill:#fcf3d8, color:#7a5a2f
+    style Data fill:transparent
+    style PDE_Models fill:transparent
+    style HPC fill:transparent
+    style Optimization fill:transparent
+    style SCADA_Integration fill:transparent
+    style Tests fill:transparent
+    style Infra fill:transparent
+    style Dash_App fill:transparent
+    style Notebooks fill:transparent
+```
+---
 
 ## Key Highlights
 - **Data Pipeline**: Robust ingestion (Kafka/SCADA) and automated ETL for raw → bronze → silver → gold layers.
@@ -165,108 +269,4 @@ We welcome collaboration from data scientists, smelting engineers, PDE experts, 
 2. **Fork & Pull**: Submit pull requests with detailed descriptions and tests.  
 3. **Community of Practice**: Join us, share knowledge, and help refine best practices in revolutionizing MetalX smelting with data-driven insights and HPC optimization—reducing costs, emissions, and complexity in one unified solution.
 
----
-```mermaid
-flowchart LR
- subgraph Data["Data"]
-        A["data/raw -> data/processed"]
-  end
- subgraph Notebooks["Notebooks"]
-        NB1["1_data_exploration.ipynb"]
-        NB2["2_pde_model_build.ipynb"]
-        NB3["3_simulation_results.ipynb"]
-        NB4["4_optimization_studies.ipynb"]
-        NB5["5_dashboard_prototype.ipynb"]
-  end
- subgraph PDE_Models["PDE_Models"]
-        M1["Thermal Fourier"]
-        M2["Mass Transfer Fick"]
-        M3["Electrochem Butler-Volmer"]
-        M4["Combined Model"]
-  end
- subgraph HPC["HPC"]
-        HPC_RUN["run_hpc_simulation.py"]
-        SLURM["run_sim.slurm"]
-  end
- subgraph Optimization["Optimization"]
-        O1["energy_optimize.py"]
-        O2["multi_objective.py"]
-        O3["constraints.py"]
-        O4["solver_utils.py"]
-  end
- subgraph SCADA_Integration["SCADA_Integration"]
-        SMOCK["scada_mock.py"]
-        KAFKA["kafka_producer.py"]
-  end
- subgraph Dash_App["Dash_App"]
-        APP["app.py"]
-  end
- subgraph Tests["Tests"]
-        T1["test_thermal_model.py"]
-        T2["test_optimization.py"]
-        T3["test_end_to_end.py"]
-  end
- subgraph Infra["Infra"]
-        REQ["requirements.txt"]
-        DOCKER["Dockerfile"]
-        GIT[".gitignore"]
-  end
-    Data --> NB1
-    NB1 --> Data
-    NB2 --> PDE_Models
-    PDE_Models --> NB3 & HPC & Optimization
-    HPC_RUN --> PDE_Models & SLURM
-    NB4 --> Optimization
-    Optimization --> SCADA_Integration
-    SCADA_Integration --> APP
-    NB5 --> APP
-    Tests --> PDE_Models & Optimization & SCADA_Integration
-    Infra -.-> PDE_Models & Optimization & SCADA_Integration & APP & Tests
-
-     A:::Peach
-     NB1:::Sky
-     NB1:::Pine
-     NB2:::Pine
-     NB3:::Pine
-     NB4:::Pine
-     NB5:::Pine
-     M1:::Aqua
-     M2:::Aqua
-     M3:::Aqua
-     M4:::Aqua
-     HPC_RUN:::Ash
-     SLURM:::Ash
-     O1:::Rose
-     O2:::Rose
-     O3:::Rose
-     O4:::Rose
-     SMOCK:::PastelGreen
-     KAFKA:::PastelGreen
-     APP:::PastelYellow
-     T1:::Sky
-     T2:::Sky
-     T3:::Sky
-     REQ:::PastelPurple
-     DOCKER:::PastelPurple
-     GIT:::PastelPurple
-    classDef Aqua stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
-    classDef Pine stroke-width:1px, stroke-dasharray:none, stroke:#254336, fill:#27654A, color:#FFFFFF
-    classDef Peach stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
-    classDef Rose stroke-width:1px, stroke-dasharray:none, stroke:#FF5978, fill:#FFDFE5, color:#8E2236
-    classDef Sky stroke-width:1px, stroke-dasharray:none, stroke:#374D7C, fill:#E2EBFF, color:#374D7C
-    classDef Ash stroke-width:1px, stroke-dasharray:none, stroke:#999999, fill:#EEEEEE, color:#000000
-    classDef Class_04 stroke-width:1px, stroke-dasharray: 0
-    classDef PastelPurple stroke-width:1px, stroke-dasharray:none, stroke:#b39bc8, fill:#ede3f5, color:#4f3c5b
-    classDef PastelGreen stroke-width:1px, stroke-dasharray:none, stroke:#82b288, fill:#e2f2df, color:#2e4a3a
-    classDef PastelYellow stroke-width:1px, stroke-dasharray:none, stroke:#e6c17d, fill:#fcf3d8, color:#7a5a2f
-    style Data fill:transparent
-    style PDE_Models fill:transparent
-    style HPC fill:transparent
-    style Optimization fill:transparent
-    style SCADA_Integration fill:transparent
-    style Tests fill:transparent
-    style Infra fill:transparent
-    style Dash_App fill:transparent
-    style Notebooks fill:transparent
-```
 ---
