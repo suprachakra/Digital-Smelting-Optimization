@@ -11,6 +11,7 @@
         - [2.3.2 Non-Functional Requirements](#232-non-functional-requirements)
     - [2.4 Use Case Diagram (Sample)](#24-use-case-diagram-sample)
     - [2.5 Component Diagram (High-Level)](#25-component-diagram-high-level)
+    - [2.6 Engineering & Architecture Perspective](#26-engineering--architecture-perspective)
     - [2.7 Mentorship & Product Management Community of Practice (CoP)](#27-mentorship--product-management-community-of-practice-cop)
         - [2.7.1 CoP Charter & Goals](#271-cop-charter--goals)
         - [2.7.2 CoP Membership & Roles](#272-cop-membership--roles)
@@ -250,7 +251,26 @@ flowchart TD
 7. **Operational Dashboards** (UC-04): Visualizes all relevant KPIs, real-time metrics, alerts, and historical trends for operational decisions.
 
 ---
+### **2.6 Engineering & Architecture Perspective**
 
+#### High-Level Architecture
+1. **Data Ingestion & ETL**: Real-time pipeline capturing ~50k sensor points/min, stored in a tiered Data Lake (Bronze → Silver → Gold).  
+2. **HPC & PDE Modeling**: Multi-physics PDE modules (Fourier, Fick, Butler–Volmer) run on HPC clusters for rapid iteration.  
+3. **Optimization Engine**: Pyomo/CVXPY or metaheuristics (GA) for single/multi-objective constraints, ensuring stable setpoints.  
+4. **SCADA & Dashboards**: Low-latency communication for real-time control, combined with user-friendly visualization.
+
+#### Tech Stack 
+- **Python Ecosystem**: FEniCS/SfePy for PDE, Pyomo for optimization, Pandas for data transformations.  
+- **Containerization & CI/CD**: Docker images for consistent HPC runs; GitHub Actions or Jenkins for automated testing and deployment.  
+- **Scalability & Reliability**: Horizontal scale in HPC for PDE solves; robust scheduling with Airflow or Azure Data Factory.  
+- **Security & Compliance**: TLS 1.2+ for data in transit, AES-256 for data at rest, thorough audit logs for SCADA changes.
+
+#### Extensibility & Maintenance
+- **Modular PDE**: Each physics module (thermal, mass transfer, electrochem) can evolve independently.  
+- **Config-Driven**: HPC mesh sizes, solver parameters, and PDE constraints stored in YAML for easy updates.  
+- **Testing Framework**: Automated coverage across PDE solves, optimization routines, SCADA endpoints, ensuring robust code quality.
+
+---
 ### 2.7 Mentorship & Product Management Community of Practice (CoP)
 
 To ensure **continuous improvement** and **knowledge sharing**:
@@ -362,7 +382,7 @@ It references **Use Cases (UC-01 through UC-06)**, the **Agile-at-Scale (SAFe)**
 
 > **Note**: This example spans **two Program Increments (PIs)**, each with multiple sprints (or iterations). You can expand or modify based on your actual timeline.
 ---
-## **PI #1 (Weeks 1–12)**
+#### **PI #1 (Weeks 1–12)**
 
 | **Timeframe & Iterations** | **Phase & Objectives**                                    | **Key Activities / Tasks**                                                                                                                                                                                                                                                                         | **Integrated Epics**                           | **Teams Involved**                                                   | **Dependencies**                                                                              | **Iteration Goals & Success Metrics**                                                                                                                                                         | **Deliverables**                                                                                                                  | **SAFe Milestones**                                                         | **Risks & Mitigation**                                                                                                                                                          | **Outcomes**                                                                                                                                                         |
 |----------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -382,7 +402,7 @@ It references **Use Cases (UC-01 through UC-06)**, the **Agile-at-Scale (SAFe)**
 
 ---
 
-## **PI #2 (Weeks 13–24)**
+#### **PI #2 (Weeks 13–24)**
 
 | **Timeframe & Iterations** | **Phase & Objectives**                                          | **Key Activities / Tasks**                                                                                                                                                                                               | **Integrated Epics**                               | **Teams Involved**                                                       | **Dependencies**                                                                       | **Iteration Goals & Success Metrics**                                                                                                                                                     | **Deliverables**                                                                                                                  | **SAFe Milestones**                                                      | **Risks & Mitigation**                                                                                                                                                           | **Outcomes**                                                                                                                                                    |
 |----------------------------|------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
