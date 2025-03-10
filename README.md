@@ -4,7 +4,10 @@
 ```
 
 ## Overview
-Welcome to **Metalworks Inc.’s** flagship **Industry 4.0** initiative, transforming **MetalX smelting** operations into a next-generation, data-empowered process. By integrating **high-fidelity PDE modeling**, **advanced optimization**, and **real-time data pipelines**, we target a **10–15% reduction** in energy costs and an **8–12% decrease** in greenhouse gas emissions—without compromising on quality or throughput.
+Welcome to **Metalworks Inc.’s** flagship **Industry 4.0** initiative, transforming **MetalX smelting** operations into a next-generation, data-empowered process. By integrating **high-fidelity PDE modeling**, **advanced optimization**, and **real-time data pipelines**, 
+- we target a **10–15% reduction** in energy costs and 
+- an **8–12% decrease** in greenhouse gas emissions—
+- maintain or enhance smelting output (≤2% deviation) and reduce anode events by ~25%(without compromising on quality or throughput)
 
 ---
 
