@@ -44,8 +44,12 @@ Imagine a global industrial giant—call it **Metalworks Inc.**—which smelts a
 > - **Competitive Pressure**: Global Metalworks Inc. competes with other top smelters and must continuously **improve operational efficiency** to remain profitable.
 
 ### 1.2 Project Mission  
-- **Digital Transformation to Industry 4.0**: Move from traditional, manual, or purely empirical methods to a robust, **data-driven** approach incorporating **mathematical modeling**, **IoT data**, **advanced analytics**, and **agile delivery**.  
-- **End Goal**: Achieve significant **cost savings** (assume up to **10–15%** energy reduction) while maintaining or improving **MetalX** quality.  
+- **Digital Transformation to Industry 4.0**: Move from traditional, manual, or purely empirical methods to a robust, **data-driven** approach incorporating **mathematical modeling**, **IoT data**, **advanced analytics**, and **agile delivery**. 
+ 
+**End Goal**: 
+- **Cost Competitiveness:** Achieve significant **cost savings** (assume up to **10–15%** energy reduction) through optimized power consumption.
+- **Market Differentiation:** Enhanced sustainability credentials for high-grade metals, appealing to environmentally conscious markets.
+- **Modular Expansion:** The architecture supports additional smelting lines, new sensor technologies, and advanced ML expansions.
 
 This section details how **Metalworks Inc.** will execute the Industry 4.0 digital transformation journey using **SAFe**, ensuring timely delivery, robust governance, and continuous improvement.
 
