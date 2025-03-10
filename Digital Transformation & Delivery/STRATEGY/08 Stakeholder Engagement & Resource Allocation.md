@@ -1,4 +1,4 @@
-### 2.11 Stakeholder Engagement & Resource Allocation
+### Stakeholder Engagement & Resource Allocation
 
 1. **Leadership Alignment**  
    - Bi-monthly executive steering committee meetings to track major KPIs, budget, and roadblocks.  
