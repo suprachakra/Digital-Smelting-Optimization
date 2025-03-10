@@ -1,5 +1,5 @@
 ## API Specifications for Metalworks Inc. Smelting Project
-1. **Overview**  
+1. [Overview](#1-overview)<br>
    1.1 [Request & Response Headers](#11-request--response-headers)  
    1.2 [Typical JSON Body Examples](#12-typical-json-body-examples)  
    1.3 [Error Codes](#13-error-codes)  
