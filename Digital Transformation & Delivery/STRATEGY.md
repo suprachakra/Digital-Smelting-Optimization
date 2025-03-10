@@ -30,7 +30,10 @@
     - [2.9 Project KPIs & Targets](#29-project-kpis--targets)
     - [2.10 Roadmap](#210-roadmap)
     - [2.11 Stakeholder Engagement & Resource Allocation](#211-stakeholder-engagement--resource-allocation)
-    - [2.12 Conclusion & Next Steps](#212-conclusion--next-steps)
+    - [2.12 User Experience](#212-user-experience)
+    - [2.13 Conclusion & Next Steps](#213-conclusion--next-steps)
+
+
   
       
 --------------
@@ -518,8 +521,24 @@ It references **Use Cases (UC-01 through UC-06)**, the **Agile-at-Scale (SAFe)**
    - Training and onboarding costs (external PDE/SAFe workshops, certifications).
 
 ---
+### **2.12 User Experience**
 
-### 2.12 Conclusion & Next Steps
+#### Interface & Dashboard Design
+- **Operator-Focused Dashboards**: Clear, minimal-latency displays of voltage/current, temperature, anode events, and real-time PDE outputs.  
+- **Manager-Level Views**: High-level KPIs (energy usage, GHG metrics), cost savings, and alerts.  
+- **Responsive & Accessible**: Ensures optimal viewing on tablets or control-room monitors, with color palettes suitable for color-blind accessibility.
+
+#### Workflow & Interaction Flows
+- **Seamless Setup**: Onboarding screens for new sensor streams, PDE configurations, or optimization constraints.  
+- **Alerting & Acknowledgment**: Quick visual cues for threshold breaches, with one-click escalation or override.  
+- **Consistency & Simplicity**: Unified brand styling, minimal clutter, logical grouping of metrics.
+
+#### Adoption & Training
+- **Contextual Tooltips**: Embedded help clarifies PDE variables or optimization parameters.  
+- **Role-Based Guidance**: Operators, managers, and R&D engineers see only relevant data or configuration options, ensuring an **intuitive** user journey.  
+
+---
+### 2.13 Conclusion & Next Steps
 
 By executing the above plan with **Agile SAFe** principles, robust **use case definitions**, **API guidelines**, and a **Community of Practice** for knowledge sharing, Metalworks Inc. stands to achieve:
 
