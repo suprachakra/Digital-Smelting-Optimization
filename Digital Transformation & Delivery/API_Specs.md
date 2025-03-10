@@ -1,36 +1,33 @@
-# API Specifications for Metalworks Inc. Smelting Project
+## API Specifications for Metalworks Inc. Smelting Project
+1. **Overview**  
+   1.1 [Request & Response Headers](#11-request--response-headers)  
+   1.2 [Typical JSON Body Examples](#12-typical-json-body-examples)  
+   1.3 [Error Codes](#13-error-codes)  
+   1.4 [Versioning & Backward Compatibility](#14-versioning--backward-compatibility)  
+   1.5 [Security & Compliance](#15-security--compliance)
 
- [1. Overview](#1-overview)
- 
- [2. Data Ingestion & ETL Endpoints (UC-01)](#2-data-ingestion--etl-endpoints-uc-01)
-   - [2.1 POST /data-ingestion/streams](#21-post-data-ingestionstreams)
-   - [2.2 GET /data-ingestion/streams/{streamId}](#22-get-data-ingestionstreamsstreamid)
-   
- [3. PDE Models Service (UC-02)](#3-pde-models-service-uc-02)
-   - [3.1 POST /pde-models](#31-post-pde-models)
-   - [3.2 GET /pde-models/{modelId}](#32-get-pde-modelsmodelid)
-   - [3.3 POST /pde-models/{modelId}/simulate](#33-post-pde-modelsmodelidsimulate)
-     
- [4. Optimization Service (UC-03)](#4-optimization-service-uc-03)
-   - [4.1 POST /optimizations](#41-post-optimizations)
-   - [4.2 GET /optimizations/{optimizationId}](#42-get-optimizationsoptimizationid)
-     
- [5. SCADA Integration (UC-05)](#5-scada-integration-uc-05)
- - [5.1 POST /scada/setpoints](#51-post-scadasetpoints)
- - [5.2 GET /scada/status](#52-get-scadastatus)
-   
- [6. Digital Twin & ML (UC-06)](#6-digital-twin--ml-uc-06)
- - [6.1 POST /digital-twin/sync](#61-post-digital-twinsync)
- - [6.2 GET /digital-twin/anomalies](#62-get-digital-twinanomalies)
-   
- [7. Common Request/Response Headers](#7-common-requestresponse-headers)
-  
- [8. Error Codes](#8-error-codes)
- 
- [9. Versioning & Backward Compatibility](#9-versioning--backward-compatibility)
- 
- [10. Security & Compliance](#10-security--compliance)
+2. **Data Ingestion & ETL Endpoints (UC-01)**  
+   2.1 [POST /data-ingestion/streams](#21-post-data-ingestionstreams)  
+   2.2 [GET /data-ingestion/streams/{streamId}](#22-get-data-ingestionstreamsstreamid)
 
+3. **PDE Models Service (UC-02)**  
+   3.1 [POST /pde-models](#31-post-pde-models)  
+   3.2 [GET /pde-models/{modelId}](#32-get-pde-modelsmodelid)  
+   3.3 [POST /pde-models/{modelId}/simulate](#33-post-pde-modelsmodelidsimulate)
+
+4. **Optimization Service (UC-03)**  
+   4.1 [POST /optimizations](#41-post-optimizations)  
+   4.2 [GET /optimizations/{optimizationId}](#42-get-optimizationsoptimizationid)
+
+5. **SCADA Integration (UC-05)**  
+   5.1 [POST /scada/setpoints](#51-post-scadasetpoints)  
+   5.2 [GET /scada/status](#52-get-scadastatus)
+
+6. **Digital Twin & ML (UC-06)**  
+   6.1 [POST /digital-twin/sync](#61-post-digital-twinsync)  
+   6.2 [GET /digital-twin/anomalies](#62-get-digital-twinanomalies)
+
+ 
 ```
 This document provides detailed references for all RESTful endpoints across the Data Ingestion, PDE Modeling, Optimization, SCADA Integration, and Dashboard services.
 ```
@@ -38,25 +35,110 @@ This document provides detailed references for all RESTful endpoints across the 
 
 ### 1. Overview
 
-We follow RESTful principles with **versioned** endpoints, typically of the form:
-
+All services follow **RESTful principles** with **versioned endpoints**, typically of the form:
 ```
 https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<service-root>/<resource-id>
 ```
 
-- **Domain Name**: `metalworks.example.com` (placeholder for actual domain)
-- **App Group**: `industrial-automation`
-- **Subapp Group**: `smelting-ops`
-- **Version**: `v1` (we may introduce `v2`, `v3` in future)
-- **Service Root**: `pde-models`, `optimizations`, `dashboards`, `scada`, etc.
-- **Resource Id**: Unique identifier (optional) for a PDE model, optimization job, etc.
+Where:
 
+| Field               | Description                                               | Example                       |
+|---------------------|-----------------------------------------------------------|-------------------------------|
+| **domain-name**     | `metalworks.example.com` (placeholder for actual domain) | `metalworks.example.com`      |
+| **app-group**       | `industrial-automation`                                  | `industrial-automation`       |
+| **subapp-group**    | `smelting-ops`                                           | `smelting-ops`                |
+| **version**         | `v1` or `v2` (for backward compatibility)                | `v1`                          |
+| **service-root**    | e.g., `pde-models`, `optimizations`, `dashboards`, etc.   | `pde-models`                  |
+| **resource-id**     | Unique ID for a PDE model, optimization job, etc. (optional) | `pde-001`, `sim-xyz`, etc. |
+
+#### 1.1 Request & Response Headers
+
+**Common Request Headers**:
+
+| Header Name        | Value Example                                  | Required | Description                             |
+|--------------------|-----------------------------------------------|----------|-----------------------------------------|
+| `Content-Type`     | `application/json`                            | Yes      | Defines request/response format         |
+| `Authorization`    | `Bearer <JWT-Token>`                          | Yes      | Bearer token for secured endpoints (RBAC) |
+| `x-correlation-id` | `123e4567-e89b-12d3-a456-426655440000`        | No       | For request tracing in logs             |
+| `Cache-Control`    | `no-cache`                                    | No       | Caching directives                      |
+
+**Example Response Headers**:
+
+| Header Name    | Value Example           | Required | Description                                |
+|----------------|-------------------------|----------|--------------------------------------------|
+| `Content-Type` | `application/json`     | Yes      | Server response content type               |
+| `x-request-id` | `abc123`               | No       | Echoes correlation ID if provided          |
+| `Cache-Control`| `no-cache`             | No       | Caching directives                         |
+
+#### 1.2 Typical JSON Body Examples
+
+Below is a sample JSON for **creating a PDE model configuration**:
+
+```json
+{
+  "modelName": "FourierHeatModel",
+  "parameters": {
+    "thermalConductivity": 200,
+    "initialTemperature": 700,
+    "boundaryConditions": {
+      "topSurface": 750,
+      "bottomSurface": 690
+    }
+  },
+  "description": "Model for simulating heat transfer in pot cell."
+}
+```
+
+And a sample **response**:
+
+```json
+{
+  "modelId": "pde-001",
+  "modelName": "FourierHeatModel",
+  "status": "created",
+  "creationTimestamp": "2025-02-01T10:00:00Z",
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/pde-models/pde-001"
+    }
+  ]
+}
+```
+
+#### 1.3 Error Codes
+
+Below is the standard set of error codes used across all endpoints:
+
+| Error Code | HTTP Status               | Message                                     |
+|------------|---------------------------|---------------------------------------------|
+| `ERR-4001` | 400 Bad Request           | Invalid input or missing required fields    |
+| `ERR-4011` | 401 Unauthorized          | Missing/Invalid JWT token                   |
+| `ERR-4033` | 403 Forbidden             | User does not have the required role        |
+| `ERR-4042` | 404 Not Found            | Resource not found                          |
+| `ERR-5000` | 500 Internal Server Error | General server-side exception occurred      |
+
+#### 1.4 Versioning & Backward Compatibility
+
+- **v1** is our initial release.  
+- **Future versions** (v2, v3) will preserve backward compatibility for a transition period.  
+- Clients should specify the version in the endpoint path. If omitted, it defaults to `v1`.
+
+#### 1.5 Security & Compliance
+
+- **TLS 1.2+** for all data in transit.  
+- **RBAC** with roles (Operator, Engineer, Manager) to ensure proper authorization.  
+- **Audit Logs**: SCADA changes retained for at least 2 years.  
+- **GDPR/CCPA Compliance**: If any personal data is involved, it must adhere to relevant regulations.
 ---
 
 ### 2. Data Ingestion & ETL Endpoints (UC-01)
 
-#### 2.1 `POST /data-ingestion/streams`
-- **Description**: Registers a new data stream from a smelting line or sensor gateway.
+These endpoints manage real-time or batch ingestion from smelting lines, typically capturing voltage, current, temperature, or chemical composition data.
+
+#### 2.1 **POST /data-ingestion/streams**
+
+- **Description**: Registers a new data stream from a smelting line or sensor gateway.  
 - **Request Body**:
   ```json
   {
@@ -76,10 +158,11 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
     ]
   }
   ```
-- **Notes**: This endpoint sets up ingestion configurations (Kafka topics, SCADA connectors, etc.).
+- **Notes**: Sets up ingestion configurations (Kafka topics, SCADA connectors, etc.).
 
-#### 2.2 `GET /data-ingestion/streams/{streamId}`
-- **Description**: Retrieves metadata for a given data stream.
+#### 2.2 **GET /data-ingestion/streams/{streamId}**
+
+- **Description**: Retrieves metadata for a given data stream.  
 - **Response**:
   ```json
   {
@@ -90,13 +173,15 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
     "links": [...]
   }
   ```
-
 ---
 
 ### 3. PDE Models Service (UC-02)
 
-#### 3.1 `POST /pde-models`
-- **Description**: Creates a new PDE model configuration (Fourier, Fick, Butler–Volmer, etc.).
+Endpoints for creating, configuring, and simulating multi-physics PDE models (Fourier, Fick, Butler–Volmer).
+
+#### 3.1 **POST /pde-models**
+
+- **Description**: Creates a new PDE model configuration.  
 - **Request Body**:
   ```json
   {
@@ -128,8 +213,9 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
   }
   ```
 
-#### 3.2 `GET /pde-models/{modelId}`
-- **Description**: Retrieves details of a specific PDE model configuration.
+#### 3.2 **GET /pde-models/{modelId}**
+
+- **Description**: Retrieves details of a specific PDE model configuration.  
 - **Response**:
   ```json
   {
@@ -145,8 +231,9 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
   }
   ```
 
-#### 3.3 `POST /pde-models/{modelId}/simulate`
-- **Description**: Triggers a PDE simulation run on HPC or cloud-based cluster.
+#### 3.3 **POST /pde-models/{modelId}/simulate**
+
+- **Description**: Triggers a PDE simulation run on HPC or cloud-based cluster.  
 - **Request Body**:
   ```json
   {
@@ -167,13 +254,15 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
     ]
   }
   ```
-
 ---
 
 ### 4. Optimization Service (UC-03)
 
-#### 4.1 `POST /optimizations`
-- **Description**: Submits PDE outputs + real-time constraints for energy optimization.
+Endpoints for running energy-minimizing or multi-objective optimization tasks using PDE outputs.
+
+#### 4.1 **POST /optimizations**
+
+- **Description**: Submits PDE outputs + real-time constraints for energy optimization.  
 - **Request Body**:
   ```json
   {
@@ -195,8 +284,9 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
   }
   ```
 
-#### 4.2 `GET /optimizations/{optimizationId}`
-- **Description**: Retrieves the status or results of an optimization run.
+#### 4.2 **GET /optimizations/{optimizationId}**
+
+- **Description**: Retrieves the status or results of an optimization run.  
 - **Response**:
   ```json
   {
@@ -214,8 +304,11 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
 
 ### 5. SCADA Integration (UC-05)
 
-#### 5.1 `POST /scada/setpoints`
-- **Description**: Sends recommended setpoints to SCADA in near real-time.
+Endpoints to push optimized setpoints into SCADA systems and retrieve SCADA statuses.
+
+#### 5.1 **POST /scada/setpoints**
+
+- **Description**: Sends recommended setpoints to SCADA in near real-time.  
 - **Request Body**:
   ```json
   {
@@ -235,8 +328,9 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
   }
   ```
 
-#### 5.2 `GET /scada/status`
-- **Description**: Retrieves SCADA system status or override events.
+#### 5.2 **GET /scada/status**
+
+- **Description**: Retrieves SCADA system status or override events.  
 - **Response**:
   ```json
   {
@@ -252,8 +346,11 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
 
 ### 6. Digital Twin & ML (UC-06)
 
-#### 6.1 `POST /digital-twin/sync`
-- **Description**: Updates the digital twin environment with real-time smelting data.
+Endpoints for updating and querying the digital twin environment, which mirrors real-time smelting operations and anomaly detection.
+
+#### 6.1 **POST /digital-twin/sync**
+
+- **Description**: Updates the digital twin environment with real-time smelting data.  
 - **Request Body**:
   ```json
   {
@@ -271,8 +368,9 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
   }
   ```
 
-#### 6.2 `GET /digital-twin/anomalies`
-- **Description**: Returns a list of detected anomalies from ML models (LSTM, RNN).
+#### 6.2 **GET /digital-twin/anomalies**
+
+- **Description**: Returns a list of detected anomalies from ML models (LSTM, RNN).  
 - **Response**:
   ```json
   {
@@ -287,44 +385,19 @@ https://api.metalworks.example.com/industrial-automation/smelting-ops/v1/<servic
     ]
   }
   ```
-
 ---
+### 7. Summary
 
-### 7. Common Request/Response Headers
+This **unified API reference** ensures consistent patterns across Data Ingestion, PDE Modeling, Optimization, SCADA Integration, and Digital Twin/ML. By adhering to these **RESTful guidelines**, versioning strategies, and security requirements, Metalworks Inc. can confidently scale its Industry 4.0 smelting transformation—supporting robust HPC workflows, real-time setpoint adjustments, and advanced anomaly detection.
 
-| Header Name       | Value Example                                  | Required | Description                          |
-|-------------------|-----------------------------------------------|----------|--------------------------------------|
-| `Content-Type`    | `application/json`                            | Yes      | Defines request/response format.     |
-| `Authorization`   | `Bearer <JWT-Token>`                          | Yes      | For secured endpoints (RBAC).        |
-| `x-correlation-id`| `123e4567-e89b-12d3-a456-426655440000`        | No       | For request tracing in logs.         |
-| `Cache-Control`   | `no-cache`                                    | No       | Caching directives.                  |
+1. **RESTful, Versioned Endpoints**: Clear structure for each service (pde-models, optimizations, scada, etc.).  
+2. **Strict Security & Compliance**: TLS 1.2+, RBAC, and audit logs.  
+3. **Error Handling & Logging**: Standard error codes (`ERR-4001` to `ERR-5000`), correlation IDs for debugging.  
+4. **Extensible Design**: Future expansions to new microservices or version increments can follow the same pattern without breaking existing clients.
 
----
+**Going forward**:
 
-### 8. Error Codes
-
-| Error Code | HTTP Status               | Message                                     |
-|------------|---------------------------|---------------------------------------------|
-| ERR-4001   | 400 Bad Request           | Invalid input or missing required fields    |
-| ERR-4011   | 401 Unauthorized          | Missing/Invalid JWT token                   |
-| ERR-4033   | 403 Forbidden            | User does not have the required role        |
-| ERR-4042   | 404 Not Found            | Resource not found                          |
-| ERR-5000   | 500 Internal Server Error | General server-side exception occurred      |
-
----
-
-### 9. Versioning & Backward Compatibility
-
-- **v1** is our initial release. Future versions (v2, v3) will preserve backward compatibility for a transition period.
-- Clients should specify the version in the endpoint path. Failing to do so defaults to `v1`.
-
----
-
-### 10. Security & Compliance
-
-- **TLS 1.2+** for all in-transit data.
-- **RBAC** with roles (Operator, Engineer, Manager).
-- **Audit Logs** for SCADA changes (retain for at least 2 years).
-- **GDPR/CCPA** compliance for any personal data (if relevant).
-
+- Ensure each service is registered with the correct domain routing (`metalworks.example.com`).  
+- Configure CI/CD to validate new endpoints and maintain backward compatibility.  
+- Periodically review or extend error codes, role definitions, and versioning strategy as the smelting operations evolve.
 ---
