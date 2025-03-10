@@ -155,63 +155,23 @@ Digital-Smelting-Optimization/
 │   ├── API_Specs.md   
 │   ├── Data Management & Analytics Architecture.md         
 │   ├── Mathematical Modeling & Optimization.md
-│   ├──STRATEGY.md  
-├── docker/
-│   ├── Dockerfile             -----------------------   # Main Docker image for PDE & optimization
-│   └── Dockerfile.dev         -----------------------   # Dev-specific Dockerfile (optional)
-├── ci_cd/
-│   ├── github_actions.yml       # Or Jenkinsfile, GitLab CI, etc.
-│   ├── tests_coverage_report/   # Store coverage artifacts
-│   └── performance_tests/       # Scripts for HPC load tests
-├── config/
-│   ├── app_config.yaml          # Global app config (port, debug mode, etc.)
-│   ├── hpc_config.yaml          # HPC mesh size, solver settings
-│   └── constraints_config.yaml  # PDE constraints, temperature bounds, etc.
+│   ├──STRATEGY/...
+├── docker/...
+├── ci_cd/...
+├── config/...
 ├── data/
-│   ├── raw/
-│   │   ├── sensor_data_day1.csv
-│   │   └── sensor_data_day2.csv
-│   └── processed/
-│       ├── sensor_data_day1_cleaned.csv
-│       └── sensor_data_day2_cleaned.csv
-├── hpc_scripts/
-│   ├── run_hpc_simulation.py
-│   └── run_sim.slurm
-├── model/
-│   ├── combined_model.py
-│   ├── electrochemistry.py
-│   ├── mass_transfer_model.py
-│   └── thermal_model.py
-├── notebooks/
-│   ├── 1_data_exploration.ipynb
-│   ├── 2_pde_model_build.ipynb
-│   ├── 3_simulation_results.ipynb
-│   ├── 4_optimization_studies.ipynb
-│   └── 5_dashboard_prototype.ipynb
-├── optimization/
-│   ├── constraints.py
-│   ├── energy_optimize.py
-│   ├── multi_objective.py
-│   └── solver_utils.py
-├── orchestration/
-│   └── airflow_dags/           # Example Airflow DAGs for scheduling PDE runs
-├── reports/
-│   ├── cost_saving_analysis.pdf
-│   ├── project_overview.pdf
-│   └── technical_appendix.pdf
-├── scada/
-│   ├── scada_mock.py           # Mock SCADA service
-│   └── scada_client.py         # Potential SCADA client for sending commands
-├── services/
-│   ├── app.py                  # Dash or Flask app for dashboards
-│   └── kafka_producer.py       # Kafka producer for sensor simulation
-├── tests/
-    ├── test_thermal_model.py
-    ├── test_optimization.py
-    ├── test_end_to_end.py
-    └── test_data/              # Sample test data files
-                    
-	
+│   ├── raw/...
+│   └── processed/...
+├── hpc_scripts/...
+├── model/...
+├── notebooks/...
+├── optimization/...
+├── orchestration/...
+├── reports/...
+├── scada/...
+├── services/...
+├── tests/...
+                    	
 ```
 
 - **data/**: Houses raw sensor dumps and cleaned CSVs.  
